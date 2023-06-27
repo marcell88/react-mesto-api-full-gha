@@ -1,0 +1,10 @@
+.header__close-menu {
+    width: 20px;
+    height: 20px;
+    transition: 0.4s opacity;
+}
+
+.header__close-menu:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}

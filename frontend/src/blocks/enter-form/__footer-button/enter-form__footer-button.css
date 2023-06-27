@@ -1,0 +1,26 @@
+.enter-form__footer-button {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+
+    margin: 0;
+    padding: 15px 0 0 0;
+    width: 100%;
+    border: none;
+    background-color: black;
+    transition: 0.4s color;
+}
+
+.enter-form__footer-button:hover {
+    color: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .enter-form__footer-button {
+        padding-top: 20px;
+    }
+}

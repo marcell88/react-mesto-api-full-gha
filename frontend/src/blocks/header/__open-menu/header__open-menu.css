@@ -1,0 +1,10 @@
+.header__open-menu {
+    width: 24px;
+    height: 18px;
+    transition: 0.4s opacity;
+}
+
+.header__open-menu:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}

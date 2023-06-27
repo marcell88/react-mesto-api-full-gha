@@ -1,0 +1,11 @@
+.gallery__heart-cont {
+    width: 23px;
+    height: 38px;
+    padding: 0;
+    margin: 0 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+    align-items: center;
+}

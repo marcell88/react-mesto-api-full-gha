@@ -1,0 +1,12 @@
+.popup__success-image {
+    width: 120px;
+    height: 120px;
+    margin: 0;
+    padding: 0 0 32px 0;
+}
+
+@media screen and (max-width: 600px) {
+    .popup__success-image {
+        padding-bottom: 40px;
+    }
+}

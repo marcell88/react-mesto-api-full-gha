@@ -1,0 +1,12 @@
+.enter-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    min-width: 260px;
+    max-width: 418px;
+    width: 100%;
+    padding: 0 30px 0 30px;
+    flex-grow: 1;
+}
