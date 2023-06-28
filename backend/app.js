@@ -15,6 +15,12 @@ mongoose.connect('mongodb://127.0.0.1:27017/mestodb')
   })
   .catch((err) => { console.log('Error with DB connection: ', err); });
 
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.use(requestLogger);
 app.use(express.json());
 app.use('/', router);
