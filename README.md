@@ -9,8 +9,8 @@
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 84.201.176.86
 
-Frontend https://...
+Frontend https://markell.students.nomoreparties.sbs/
 
-Backend https://...
+Backend https://api.markell.students.nomoreparties.sbs/
