@@ -1,1 +1,1 @@
-export const SERVER_BASE_URL = 'http://84.201.176.86:3002';
+export const SERVER_BASE_URL = 'http://84.201.176.86:3000';
