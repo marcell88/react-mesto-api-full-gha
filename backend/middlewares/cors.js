@@ -2,6 +2,7 @@ const cors = require('cors');
 
 const whiteList = [
   'http://markell.students.nomoreparties.sbs',
+  'https://markell.students.nomoreparties.sbs',
 ];
 
 const corsOptions = {
