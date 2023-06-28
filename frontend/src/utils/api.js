@@ -1,4 +1,4 @@
-class Api {
+export default class Api {
 
     constructor(options) {
         this._baseUrl = options.baseUrl;
@@ -111,13 +111,3 @@ class Api {
     }
 
 }
-
-const api = new Api({
-    baseUrl: 'https://api.10pages.report',
-    headers: {
-        authorization: '44fbd263-dcc3-40dc-bdca-15d93dcff4a4',
-        'Content-Type': 'application/json'
-    }
-});
-
-export default api;

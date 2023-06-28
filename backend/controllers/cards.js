@@ -55,7 +55,9 @@ const createCard = (req, res, next) => {
     link: req.body.link,
     owner: req.user._id,
   })
-    .then((card) => res.status(HTTP_STATUS_CREATED).send(card))
+    .then((card) => Card.findById(card._id)
+      .populate(['owner', 'likes'])
+      .then((cardPopulated) => res.status(HTTP_STATUS_CREATED).send(cardPopulated)))
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
         next(new BadRequestError('Incorrect data were send to server for card creation'));

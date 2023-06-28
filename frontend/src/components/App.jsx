@@ -16,8 +16,10 @@ import ProtectedRouteElement from './ProtectedRouteElement.jsx';
 import Login from './Login.jsx';
 import Register from './Register.jsx';
 
-import api from '../utils/api.js';
+import Api from '../utils/Api.js';
 import * as auth from '../utils/auth.js';
+
+import { SERVER_BASE_URL } from '../utils/serverConnections.js'
 
 function App() {
 
@@ -28,6 +30,7 @@ function App() {
     const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
     const [isDeleteCardPopupOpen, setDeleteCardPopupOpen] = React.useState(false);
 
+    const [api, setApi] = React.useState({});
     const [selectedCard, setSelectedCard] = React.useState({ link: '', name: '' });
     const [currentUser, setCurrentUser] = React.useState({ about: '', name: '' });
     const [cardToDelete, setCardToDelete] = React.useState({ link: '', name: '' });
@@ -43,22 +46,26 @@ function App() {
 
     //Effects
     React.useEffect(() => {
-        api.getUserInfo()
-            .then(user => {
-                if (user) {
-                    setCurrentUser(user);
-                }
-            })
-            .catch(err => { console.log(err) });
-    }, []);
+        if (Object.keys(api).length > 0) {
+            api.getUserInfo()
+                .then(user => {
+                    if (user) {
+                        setCurrentUser(user);
+                    }
+                })
+                .catch(err => { console.log(err) });
+        }
+    }, [api]);
 
     React.useEffect(() => {
-        api.getInitialCards()
-            .then(cards => {
-                setCards(cards);
-            })
-            .catch(err => { console.log(err) });
-    }, []);
+        if (Object.keys(api).length > 0) {
+            api.getInitialCards()
+                .then(cards => {
+                    setCards(cards.reverse());
+                })
+                .catch(err => { console.log(err) });
+        }
+    }, [api]);
 
     React.useEffect(() => {
         const jwt = localStorage.getItem('jwt');
@@ -67,7 +74,14 @@ function App() {
             auth.checkToken(jwt)
                 .then(res => {
                     setLoggedIn(true);
-                    setUserEmail(res.data.email);
+                    setUserEmail(res.email);
+                    setApi(new Api({
+                        baseUrl: SERVER_BASE_URL,
+                        headers: {
+                            authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                            'Content-Type': 'application/json'
+                        }
+                    }));
                     navigate('/');
                 })
                 .catch(err => {
@@ -182,6 +196,13 @@ function App() {
                 setLoggedIn(true);
                 setUserEmail(email);
                 navigate('/');
+                setApi(new Api({
+                    baseUrl: SERVER_BASE_URL,
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                        'Content-Type': 'application/json'
+                    }
+                }));
             })
             .catch(err => {
                 setRegistrationSuccessful(false);
@@ -206,6 +227,7 @@ function App() {
     const handleLogOut = () => {
         localStorage.removeItem('jwt');
         setLoggedIn(false);
+        setApi({});
         navigate('/sign-in');
     }
 
