@@ -1,1 +1,1 @@
-export const SERVER_BASE_URL = 'http://84.201.176.86:3000';
+export const SERVER_BASE_URL = 'http://api.markell.students.nomoreparties.sbs';

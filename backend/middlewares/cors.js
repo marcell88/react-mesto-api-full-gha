@@ -1,12 +1,11 @@
 const cors = require('cors');
 
 const whiteList = [
-  'http://localhost:3000',
+  'https://markell.students.nomoreparties.sbs',
 ];
 
 const corsOptions = {
   origin: (origin, callback) => {
-    callback(null, true);
     if (whiteList.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
@@ -15,4 +14,4 @@ const corsOptions = {
   },
 };
 
-module.exports = cors();
+module.exports = cors(corsOptions);
