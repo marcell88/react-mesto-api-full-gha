@@ -11,6 +11,6 @@
 
 IP-адрес 84.201.176.86
 
-Frontend https://markell.students.nomoreparties.sbs/
+Frontend https://markell.students.nomoreparties.sbs
 
-Backend https://api.markell.students.nomoreparties.sbs/
+Backend https://api.markell.students.nomoreparties.sbs
