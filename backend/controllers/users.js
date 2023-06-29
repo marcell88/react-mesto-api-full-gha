@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const { HTTP_STATUS_OK, HTTP_STATUS_CREATED } = require('node:http2').constants;
 
 const MONGO_DUBLICATE_ERROR = 11000;
-const SUPER_SECRET = 'super-secret';
+const JWT_SECTRET = require('../utils/variables');
 
 const BadRequestError = require('../errors/BadRequestError');
 const DocumentNotFoundError = require('../errors/DocumentNotFoundError');
@@ -78,7 +78,7 @@ const login = (req, res, next) => {
   const { email, password } = req.body;
   User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, SUPER_SECRET, { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, JWT_SECTRET, { expiresIn: '7d' });
       res.status(HTTP_STATUS_OK).send({ token });
     })
     .catch((err) => {
