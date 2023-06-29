@@ -10,6 +10,7 @@ const whiteList = [
 
 const corsOptions = {
   origin: (origin, callback) => {
+    callback(null, true);
     if (NODE_ENV !== 'production' || whiteList.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
