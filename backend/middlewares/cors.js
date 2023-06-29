@@ -4,6 +4,8 @@ const UnhandledError = require('../errors/UnhandledErrod');
 const whiteList = [
   'http://markell.students.nomoreparties.sbs',
   'https://markell.students.nomoreparties.sbs',
+  'http://api.markell.students.nomoreparties.sbs',
+  'https://api.markell.students.nomoreparties.sbs',
 ];
 
 module.exports = (req, res, next) => {
@@ -29,7 +31,7 @@ module.exports = (req, res, next) => {
     return res.end();
   }
 
-  // for testing through postman
+  // for testing through postman in production mode
   if (!isAllowedOrigin) {
     return next(new UnhandledError('CORS blocked the request'));
   }
