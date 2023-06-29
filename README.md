@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 84.201.176.86
+IP 84.201.176.86
 
 Frontend https://markell.students.nomoreparties.sbs
 
