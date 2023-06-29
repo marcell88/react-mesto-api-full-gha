@@ -1,4 +1,3 @@
-const cors = require('cors');
 const { NODE_ENV } = require('../utils/variables');
 
 const whiteList = [
@@ -6,16 +5,28 @@ const whiteList = [
   'https://markell.students.nomoreparties.sbs',
 ];
 
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (NODE_ENV !== 'production' || whiteList.indexOf(origin) !== -1) {
-      callback(null, origin);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+module.exports = (req, res, next) => {
+  const { method } = req;
+  const { origin } = req.headers;
+  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+  const requestHeaders = req.headers['access-control-request-headers'];
 
+  if (NODE_ENV !== 'production') {
+    res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
+    res.header('Access-Control-Allow-Headers', requestHeaders);
+    res.header('Access-Control-Allow-Origin', '*');
+    return res.end();
+  }
+
+  if (whiteList.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+
+  if (method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
+    res.header('Access-Control-Allow-Headers', requestHeaders);
+    return res.end();
+  }
+
+  return next();
 };
-
-module.exports = cors(corsOptions);
