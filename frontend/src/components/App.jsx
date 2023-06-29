@@ -16,7 +16,7 @@ import ProtectedRouteElement from './ProtectedRouteElement.jsx';
 import Login from './Login.jsx';
 import Register from './Register.jsx';
 
-import Api from '../utils/api.js';
+import Api from '../utils/Api.js';
 import * as auth from '../utils/auth.js';
 
 import { SERVER_BASE_URL } from '../utils/serverConnections.js'

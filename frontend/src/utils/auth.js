@@ -8,8 +8,8 @@ const makeRequest = (endpoint, method, body, token) => {
         }
     }
 
-    if (body) option.body = JSON.stringify(body) //POST запрос
-    if (token) option.headers.Authorization = `Bearer ${token}` //Валидность токена
+    if (body) option.body = JSON.stringify(body);
+    if (token) option.headers.Authorization = `Bearer ${token}`;
 
     return fetch(`${SERVER_BASE_URL}${endpoint}`, option)
         .then(res => {

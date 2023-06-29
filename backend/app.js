@@ -5,7 +5,7 @@ const router = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const defaultErrorHandler = require('./middlewares/defaultErrorHandler');
 
-const { PORT } = require('./utils/variables');
+const { PORT, NODE_ENV } = require('./utils/variables');
 
 const app = express();
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb')
@@ -21,6 +21,7 @@ app.get('/crash-test', () => {
 });
 
 app.use((req, res, next) => {
+  console.log(NODE_ENV);
   console.log(req.headers);
   next();
 });
