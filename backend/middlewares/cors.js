@@ -4,6 +4,8 @@ const { NODE_ENV } = require('../utils/variables');
 const whiteList = [
   'http://markell.students.nomoreparties.sbs',
   'https://markell.students.nomoreparties.sbs',
+  'http://localhost:3000',
+  'https://localhost:3000',
 ];
 
 const corsOptions = {
