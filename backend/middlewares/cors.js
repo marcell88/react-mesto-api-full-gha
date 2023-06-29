@@ -11,16 +11,12 @@ const cors = (req, res, next) => {
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
   const requestHeaders = req.headers['access-control-request-headers'];
 
-  if (NODE_ENV !== 'production') {
-    res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
-    res.header('Access-Control-Allow-Headers', requestHeaders);
-    res.header('Access-Control-Allow-Origin', '*');
-    return res.end();
+  if (whiteList.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
   }
 
-  if (whiteList.includes(origin)) {
-    console.log('CORS is OK');
-    res.header('Access-Control-Allow-Origin', origin);
+  if (NODE_ENV !== 'production') {
+    res.header('Access-Control-Allow-Origin', '*');
   }
 
   if (method === 'OPTIONS') {

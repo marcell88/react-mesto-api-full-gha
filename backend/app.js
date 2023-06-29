@@ -22,7 +22,6 @@ app.get('/crash-test', () => {
 
 app.use((req, res, next) => {
   console.log(NODE_ENV);
-  console.log(req.headers);
   next();
 });
 
