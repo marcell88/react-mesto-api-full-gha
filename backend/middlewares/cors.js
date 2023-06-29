@@ -31,7 +31,7 @@ module.exports = (req, res, next) => {
     return res.end();
   }
 
-  // for testing through postman in production mode
+  // for testing through postman in production mode.
   if (!isAllowedOrigin) {
     return next(new UnhandledError('CORS blocked the request'));
   }
