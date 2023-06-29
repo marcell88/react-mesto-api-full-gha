@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const { HTTP_STATUS_OK, HTTP_STATUS_CREATED } = require('node:http2').constants;
 
 const MONGO_DUBLICATE_ERROR = 11000;
-const JWT_SECTRET = require('../utils/variables');
+const { JWT_SECRET } = require('../utils/variables');
 
 const BadRequestError = require('../errors/BadRequestError');
 const DocumentNotFoundError = require('../errors/DocumentNotFoundError');
@@ -76,10 +76,9 @@ const createUser = (req, res, next) => {
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
-  console.log(JWT_SECTRET);
   User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, JWT_SECTRET, { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
       res.status(HTTP_STATUS_OK).send({ token });
     })
     .catch((err) => {
@@ -87,7 +86,7 @@ const login = (req, res, next) => {
         next(err);
         return;
       }
-      next(new UnhandledError('Server has broken while trying to create new user'));
+      next(new UnhandledError('Server has broken while trying to login'));
     });
 };
 

@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const UnauthorizedError = require('../errors/UnautorizedError');
 
-const JWT_SECTRET = require('../utils/variables');
+const { JWT_SECRET } = require('../utils/variables');
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
   let payload;
 
   try {
-    payload = jwt.verify(token, JWT_SECTRET);
+    payload = jwt.verify(token, JWT_SECRET);
   } catch (err) {
     next(new UnauthorizedError('Token is incorrect. Access denied. Authorization is needed'));
     return;

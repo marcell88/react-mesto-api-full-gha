@@ -1,4 +1,5 @@
 const cors = require('cors');
+const { NODE_ENV } = require('../utils/variables');
 
 const whiteList = [
   'http://markell.students.nomoreparties.sbs',
@@ -7,8 +8,7 @@ const whiteList = [
 
 const corsOptions = {
   origin: (origin, callback) => {
-    if (whiteList.indexOf(origin) !== -1) {
-      console.log('origin');
+    if (NODE_ENV !== 'production' || whiteList.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
