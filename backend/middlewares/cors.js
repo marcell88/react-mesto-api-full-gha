@@ -6,6 +6,7 @@ const whiteList = [
 ];
 
 const cors = (req, res, next) => {
+  console.log(req.headers);
   const { method } = req;
   const { origin } = req.headers;
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
@@ -14,6 +15,9 @@ const cors = (req, res, next) => {
   if (whiteList.indexOf(origin) !== -1) {
     res.header('Access-Control-Allow-Origin', origin);
   }
+
+  console.log(origin);
+  console.log(whiteList.indexOf(origin));
 
   if (NODE_ENV !== 'production') {
     res.header('Access-Control-Allow-Origin', '*');
