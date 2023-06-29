@@ -9,11 +9,13 @@ const whiteList = [
 const corsOptions = {
   origin: (origin, callback) => {
     if (NODE_ENV !== 'production' || whiteList.indexOf(origin) !== -1) {
-      callback(null, true);
+      callback(null, origin);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
   },
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+
 };
 
 module.exports = cors(corsOptions);
