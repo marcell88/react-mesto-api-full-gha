@@ -5,9 +5,9 @@ const cardRouter = require('./cards');
 const DocumentNotFoundError = require('../errors/DocumentNotFoundError');
 const { signupValidation, signinValidation } = require('../middlewares/preValidation');
 const { login, createUser } = require('../controllers/users');
-const cors = require('../middlewares/cors');
+const corsChech = require('../middlewares/cors');
 
-router.use(cors);
+router.use(corsChech);
 router.post('/signin', signinValidation, login);
 router.post('/signup', signupValidation, createUser);
 router.use(auth);
