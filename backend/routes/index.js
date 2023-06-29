@@ -7,7 +7,6 @@ const { signupValidation, signinValidation } = require('../middlewares/preValida
 const { login, createUser } = require('../controllers/users');
 const cors = require('../middlewares/cors');
 
-router.options(cors);
 router.use(cors);
 router.post('/signin', signinValidation, login);
 router.post('/signup', signupValidation, createUser);
