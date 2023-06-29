@@ -19,6 +19,7 @@ module.exports = (req, res, next) => {
   }
 
   if (whiteList.includes(origin)) {
+    console.log('CORS is OK');
     res.header('Access-Control-Allow-Origin', origin);
   }
 
