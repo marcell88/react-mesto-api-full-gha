@@ -5,12 +5,7 @@ const router = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const defaultErrorHandler = require('./middlewares/defaultErrorHandler');
 
-const {
-  pathCheck,
-  PORT,
-  NODE_ENV,
-  JWT_SECRET,
-} = require('./utils/variables');
+const { PORT } = require('./utils/variables');
 
 const app = express();
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb')
@@ -26,10 +21,7 @@ app.get('/crash-test', () => {
 });
 
 app.use((req, res, next) => {
-  console.log(pathCheck);
-  console.log(PORT);
-  console.log(NODE_ENV);
-  console.log(JWT_SECRET);
+  console.log(req.headers);
   next();
 });
 
