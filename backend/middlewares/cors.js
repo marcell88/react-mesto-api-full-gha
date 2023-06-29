@@ -11,7 +11,7 @@ const cors = (req, res, next) => {
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
   const requestHeaders = req.headers['access-control-request-headers'];
 
-  if (whiteList.includes(origin)) {
+  if (whiteList.indexOf(origin) !== -1) {
     res.header('Access-Control-Allow-Origin', origin);
   }
 
