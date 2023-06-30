@@ -1,5 +1,5 @@
 const { NODE_ENV } = require('../utils/variables');
-const UnhandledError = require('../errors/UnhandledErrod');
+const BadRequestError = require('../errors/BadRequestError');
 
 const whiteList = [
   'http://markell.students.nomoreparties.sbs',
@@ -33,7 +33,7 @@ module.exports = (req, res, next) => {
 
   // for testing through postman in production mode.
   if (!isAllowedOrigin) {
-    return next(new UnhandledError('CORS blocked the request'));
+    return next(new BadRequestError('CORS blocked the request'));
   }
 
   return next();
